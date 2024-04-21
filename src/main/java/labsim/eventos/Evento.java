@@ -1,6 +1,8 @@
 package labsim.eventos;
 
 
+import java.util.List;
+
 import labsim.entidades.Entidad;
 import labsim.motor.FEL;
 import labsim.recursos.Servidor;
@@ -21,7 +23,7 @@ public abstract class Evento {
      * @param fel
      * @param servidor
      */
-    public abstract void planificador(FEL fel, Servidor servidor);
+    public abstract void planificador(FEL fel, List<Servidor> servidor);
 
     /**
      * Constructor de Evento. Recibe un tiempo, una entidad, y ademas, el orden y el comportamiento del Evento.

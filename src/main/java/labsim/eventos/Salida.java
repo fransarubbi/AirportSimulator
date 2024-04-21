@@ -1,5 +1,7 @@
 package labsim.eventos;
 
+import java.util.List;
+
 import labsim.entidades.Entidad;
 import labsim.motor.FEL;
 import labsim.recursos.Estadisticas;
@@ -31,7 +33,9 @@ public class Salida extends Evento{
      * Overrides: Funcion en Evento. Esta planifica el proximo Evento de Salida.
      */
     @Override
-    public void planificador(FEL fel, Servidor servidor) {
+    public void planificador(FEL fel, List<Servidor> servidores) {
+
+        Servidor servidor = this.getEntidad().getServidor();
 
         if(!servidor.colaVacia()){  //Si la cola no esta vacia, hay entidades en espera
 

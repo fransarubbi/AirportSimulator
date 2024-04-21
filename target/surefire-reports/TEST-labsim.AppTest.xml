@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="labsim.AppTest" time="0.062" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="labsim.AppTest" time="15.163" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/franco/Archivos/UNSL/Tercer año/Modelos y Simulacion/Simulation-Airport/target/test-classes:/home/franco/Archivos/UNSL/Tercer año/Modelos y Simulacion/Simulation-Airport/target/classes:/home/franco/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/franco/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="java.class.path" value="/home/franco/HDD/UNSL/Tercer año/Modelos y Simulacion/AirportSimulator/target/test-classes:/home/franco/HDD/UNSL/Tercer año/Modelos y Simulacion/AirportSimulator/target/classes:/home/franco/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/franco/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/franco/.m2/repository/org/jfree/jfreechart/1.5.3/jfreechart-1.5.3.jar:"/>
     <property name="java.vm.vendor" value="Red Hat, Inc."/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://www.redhat.com/"/>
@@ -12,9 +12,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="AR"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-17-openjdk-17.0.9.0.9-3.fc39.x86_64/lib"/>
-    <property name="sun.java.command" value="/home/franco/Archivos/UNSL/Tercer año/Modelos y Simulacion/Simulation-Airport/target/surefire/surefirebooter2747132405427797263.jar /home/franco/Archivos/UNSL/Tercer año/Modelos y Simulacion/Simulation-Airport/target/surefire 2024-04-10T15-16-47_602-jvmRun1 surefire7940293679782010523tmp surefire_01206788392975362876tmp"/>
+    <property name="sun.java.command" value="/home/franco/HDD/UNSL/Tercer año/Modelos y Simulacion/AirportSimulator/target/surefire/surefirebooter12878471989120228472.jar /home/franco/HDD/UNSL/Tercer año/Modelos y Simulacion/AirportSimulator/target/surefire 2024-04-21T19-17-04_432-jvmRun1 surefire5739392428852495221tmp surefire_012862644670914066624tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/franco/Archivos/UNSL/Tercer año/Modelos y Simulacion/Simulation-Airport/target/test-classes:/home/franco/Archivos/UNSL/Tercer año/Modelos y Simulacion/Simulation-Airport/target/classes:/home/franco/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/franco/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
+    <property name="surefire.test.class.path" value="/home/franco/HDD/UNSL/Tercer año/Modelos y Simulacion/AirportSimulator/target/test-classes:/home/franco/HDD/UNSL/Tercer año/Modelos y Simulacion/AirportSimulator/target/classes:/home/franco/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/franco/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/franco/.m2/repository/org/jfree/jfreechart/1.5.3/jfreechart-1.5.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/franco"/>
     <property name="user.language" value="es"/>
@@ -22,17 +22,17 @@
     <property name="java.version.date" value="2023-10-17"/>
     <property name="java.home" value="/usr/lib/jvm/java-17-openjdk-17.0.9.0.9-3.fc39.x86_64"/>
     <property name="file.separator" value="/"/>
-    <property name="basedir" value="/home/franco/Archivos/UNSL/Tercer año/Modelos y Simulacion/Simulation-Airport"/>
-    <property name="java.vm.compressedOopsMode" value="32-bit"/>
+    <property name="basedir" value="/home/franco/HDD/UNSL/Tercer año/Modelos y Simulacion/AirportSimulator"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/franco/Archivos/UNSL/Tercer año/Modelos y Simulacion/Simulation-Airport/target/surefire/surefirebooter2747132405427797263.jar"/>
+    <property name="surefire.real.class.path" value="/home/franco/HDD/UNSL/Tercer año/Modelos y Simulacion/AirportSimulator/target/surefire/surefirebooter12878471989120228472.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.9+9"/>
     <property name="user.name" value="franco"/>
     <property name="path.separator" value=":"/>
-    <property name="os.version" value="6.8.4-200.fc39.x86_64"/>
+    <property name="os.version" value="6.8.6-200.fc39.x86_64"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
@@ -41,7 +41,7 @@
     <property name="java.vendor.url.bug" value="https://bugzilla.redhat.com/enter_bug.cgi?product=Fedora&amp;component=java-17-openjdk&amp;version=38"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="java.version" value="17.0.9"/>
-    <property name="user.dir" value="/home/franco/Archivos/UNSL/Tercer año/Modelos y Simulacion/Simulation-Airport"/>
+    <property name="user.dir" value="/home/franco/HDD/UNSL/Tercer año/Modelos y Simulacion/AirportSimulator"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="native.encoding" value="UTF-8"/>
@@ -52,6 +52,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="labsim.AppTest" time="0.003"/>
-  <testcase name="testFel" classname="labsim.AppTest" time="0.005"/>
+  <testcase name="testDistribucionNormal" classname="labsim.AppTest" time="5.136"/>
+  <testcase name="shouldAnswerWithTrue" classname="labsim.AppTest" time="0"/>
+  <testcase name="testFel" classname="labsim.AppTest" time="0.001"/>
+  <testcase name="testDistribucionUniforme" classname="labsim.AppTest" time="5.006"/>
+  <testcase name="testDistribucionExponencial" classname="labsim.AppTest" time="5.005"/>
 </testsuite>

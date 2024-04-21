@@ -1,12 +1,10 @@
 package labsim.recursos;
 
 import java.util.List;
-import java.util.Random;
 import labsim.entidades.Entidad;
 
 public abstract class Servidor{
-    
-    private Random random;
+
     private double durabilidad;
 
     private int id;   //Identificador del servidor
@@ -25,7 +23,6 @@ public abstract class Servidor{
         this.cola = cola;
         this.administrador = administrador;
         this.durabilidad = 3000;
-        this.random = new Random(System.currentTimeMillis());
     }
 
     public int getId() {
@@ -40,17 +37,8 @@ public abstract class Servidor{
         return durabilidad;
     }
 
-    public void setDurabilidad(double durabilidad) {
-        this.durabilidad -= normal(5,1);
-    }
-
-    public double normal(double mu, double var){
-        double z = 0;
-        for(int i = 0; i < 12; i++){
-            z += random.nextDouble();
-        }
-        z = (z - 6)/var;
-        return (z * var) + mu;
+    public void setDurabilidad(double desgaste) {
+        this.durabilidad -= desgaste;
     }
 
     public Entidad getEntidadActual() {

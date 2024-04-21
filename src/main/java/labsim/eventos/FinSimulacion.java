@@ -1,5 +1,7 @@
 package labsim.eventos;
 
+import java.util.List;
+
 import labsim.motor.FEL;
 import labsim.motor.Motor;
 import labsim.motor.Simulacion;
@@ -31,7 +33,7 @@ public class FinSimulacion extends Evento{
      * Overrides: Funcion en Evento. Esta planifica el proximo Evento de Fin de Simulacion. Corriguiendo el Ocio
      */
     @Override
-    public void planificador(FEL fel, Servidor servidor) {
+    public void planificador(FEL fel, List<Servidor> servidores) {
         this.motor.setFin();        
         if(estadisticas.getUltimaSalida() < this.getClock()){
             estadisticas.setTiempoOcio(this.getClock() - estadisticas.getUltimaSalida());

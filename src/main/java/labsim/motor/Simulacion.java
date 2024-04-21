@@ -1,9 +1,12 @@
 package labsim.motor;
 
+import java.util.List;
+
 import labsim.entidades.Avion;
 import labsim.entidades.Entidad;
 import labsim.eventos.Arribo;
 import labsim.eventos.FinSimulacion;
+import labsim.politicas.EleccionServidor;
 import labsim.recursos.Estadisticas;
 import labsim.recursos.Randomizer;
 import labsim.recursos.Servidor;
@@ -16,7 +19,7 @@ import labsim.tablas.TablaSalida;
 public class Simulacion extends Motor{
     
     private FEL fel;
-    private Servidor servidor;
+    private List<Servidor> servidor;
     private Estadisticas estadisticas;
 
     /**
@@ -27,14 +30,14 @@ public class Simulacion extends Motor{
      * @param estadisticas
      * @param randomizer
      */
-    public Simulacion(double tiempoFinal, Servidor servidor, Estadisticas estadisticas, Randomizer randomizer){
+    public Simulacion(double tiempoFinal, List<Servidor> servidor, Estadisticas estadisticas, Randomizer randomizer, EleccionServidor seleccion){
         this.fel = new FEL();
         this.fel.insert(new FinSimulacion(tiempoFinal, this, estadisticas));
         this.servidor = servidor;
         this.estadisticas = estadisticas;
 
         Entidad avion = new Avion(1);
-        Arribo arribo = new Arribo(0, avion, new TablaArribo(randomizer), new TablaSalida(randomizer), estadisticas);
+        Arribo arribo = new Arribo(0, avion, new TablaArribo(randomizer), new TablaSalida(randomizer), estadisticas, seleccion);
         avion.setArribo(arribo);
         fel.insert(arribo);
     }

@@ -3,6 +3,7 @@ package labsim;
 import java.util.List;
 import labsim.motor.Motor;
 import labsim.motor.Simulacion;
+import labsim.politicas.MultiplesServidores;
 import labsim.recursos.*;
 /**
  * Funcion que contiene una lista de servidores y el tamaño de una simulacion.
@@ -19,7 +20,7 @@ public class App {
     public static void main(String[] args) {
 
         Estadisticas estadisticas = new Estadisticas();
-        Motor motor = new Simulacion(TAMANIOSIMULACION, CreadorServidores.servidores(), estadisticas, new CustomRandomizer());
+        Motor motor = new Simulacion(TAMANIOSIMULACION, CreadorServidores.cincoServidoresCincoColas(), estadisticas, new CustomRandomizer(), new MultiplesServidores());
         motor.correr();
 
         System.out.println(estadisticas.toString(TAMANIOSIMULACION));

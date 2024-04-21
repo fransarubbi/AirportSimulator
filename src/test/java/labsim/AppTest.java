@@ -14,6 +14,7 @@ import java.util.List;
 import org.junit.Test;
 import labsim.entidades.Avion;
 import labsim.motor.FEL;
+import labsim.politicas.MultiplesServidores;
 import labsim.recursos.CustomRandomizer;
 import labsim.recursos.Estadisticas;
 import labsim.recursos.Randomizer;
@@ -41,13 +42,13 @@ import labsim.distribuciones.*;
 
         //Esta insercion esta desordenada temporalmente, por ende haremos la insercion
         //en la fel, para corroborar que funciona el metodo de ordenamiento en la misma
-        listaPrueba.add(new Arribo(1.0, new Avion(1), ta, ts, new Estadisticas()));
+        listaPrueba.add(new Arribo(1.0, new Avion(1), ta, ts, new Estadisticas(), new MultiplesServidores()));
         listaPrueba.add(new Salida(3.0, new Avion(1), ts, new Estadisticas()));
-        listaPrueba.add(new Arribo(2.0, new Avion(2), ta, ts, new Estadisticas()));
+        listaPrueba.add(new Arribo(2.0, new Avion(2), ta, ts, new Estadisticas(), new MultiplesServidores()));
         listaPrueba.add(new Salida(5.0, new Avion(2), ts, new Estadisticas()));
-        listaPrueba.add(new Arribo(4.0, new Avion(3), ta, ts, new Estadisticas()));
+        listaPrueba.add(new Arribo(4.0, new Avion(3), ta, ts, new Estadisticas(), new MultiplesServidores()));
         listaPrueba.add(new Salida(6.0, new Avion(3), ts, new Estadisticas()));
-        listaPrueba.add(new Arribo(5.0, new Avion(4), ta, ts, new Estadisticas()));
+        listaPrueba.add(new Arribo(5.0, new Avion(4), ta, ts, new Estadisticas(), new MultiplesServidores()));
 
         //Insertamos en la fel para que los ordene
         FEL fel = new FEL();
@@ -57,12 +58,12 @@ import labsim.distribuciones.*;
 
         //Limpiamos la lista y la cargamos de nuevo como deberian estar los elementos
         listaPrueba.clear();
-        listaPrueba.add(new Arribo(1.0, new Avion(1), ta, ts, new Estadisticas()));
-        listaPrueba.add(new Arribo(2.0, new Avion(2), ta, ts, new Estadisticas()));
+        listaPrueba.add(new Arribo(1.0, new Avion(1), ta, ts, new Estadisticas(), new MultiplesServidores()));
+        listaPrueba.add(new Arribo(2.0, new Avion(2), ta, ts, new Estadisticas(), new MultiplesServidores()));
         listaPrueba.add(new Salida(3.0, new Avion(1), ts, new Estadisticas()));
-        listaPrueba.add(new Arribo(4.0, new Avion(3), ta, ts, new Estadisticas()));
+        listaPrueba.add(new Arribo(4.0, new Avion(3), ta, ts, new Estadisticas(), new MultiplesServidores()));
         listaPrueba.add(new Salida(5.0, new Avion(2), ts, new Estadisticas()));
-        listaPrueba.add(new Arribo(5.0, new Avion(4), ta, ts, new Estadisticas()));
+        listaPrueba.add(new Arribo(5.0, new Avion(4), ta, ts, new Estadisticas(), new MultiplesServidores()));
         listaPrueba.add(new Salida(6.0, new Avion(3), ts, new Estadisticas()));
         
         //Comprobación de igualdad de eventos

@@ -1,8 +1,11 @@
 package labsim.eventos;
 
+import java.util.List;
+
 import labsim.entidades.Avion;
 import labsim.entidades.Entidad;
 import labsim.motor.FEL;
+import labsim.politicas.EleccionServidor;
 import labsim.recursos.Estadisticas;
 import labsim.recursos.Servidor;
 import labsim.tablas.*;
@@ -15,6 +18,7 @@ public class Arribo extends Evento{
     private final double TAMANIOSIMULACION = 40320;
     private TablaSalida tablaSalida;
     private Estadisticas estadisticas;
+    private EleccionServidor seleccion;
     
     /**
      * Constructor de Arribo. Recibe como parametro el tiempo de arribo, la entidad que arriba, el comportanmiento (Tabla), 
@@ -25,10 +29,11 @@ public class Arribo extends Evento{
      * @param tablaSalida
      * @param estadisticas
      */
-    public Arribo(double clock, Entidad entidad, Tabla tabla, TablaSalida tablaSalida, Estadisticas estadisticas) {
+    public Arribo(double clock, Entidad entidad, Tabla tabla, TablaSalida tablaSalida, Estadisticas estadisticas, EleccionServidor seleccion) {
         super(clock, entidad, 2, tabla);
         this.tablaSalida = tablaSalida;
         this.estadisticas = estadisticas;
+        this.seleccion = seleccion;
     }
 
     /**
@@ -52,9 +57,10 @@ public class Arribo extends Evento{
      * Overrides: Funcion en Evento. Esta planifica el proximo Evento de Arribo. Contemplando el caso especial de Bootstraping.
      */
     @Override
-    public void planificador(FEL fel, Servidor servidor) {
+    public void planificador(FEL fel, List<Servidor> servidores) {
 
         estadisticas.setCantidadAvionesArribados();      //Sumar uno a los aviones que arribaron
+        Servidor servidor = this.seleccion.seleccionServidor(servidores, this.getEntidad());   //Elegir el servidor optimo
 
         if(servidor.ocupado()){
 
@@ -94,7 +100,7 @@ public class Arribo extends Evento{
         //Programar el proximo arribo
         Avion avion = new Avion(this.getEntidad().getId() + 1); //Instanciar una nueva entidad con un nuevo id (1+ que el anterior)
         double proximoTiempo = this.getClock() + this.getTabla().nextTime(this.getClock());   //Calcular el tiempo de arribo proximo de forma aleatoria
-        Arribo proximoArribo = new Arribo(proximoTiempo, avion, this.getTabla(), this.tablaSalida, this.estadisticas);  //Crear un nuevo arribo
+        Arribo proximoArribo = new Arribo(proximoTiempo, avion, this.getTabla(), this.tablaSalida, this.estadisticas, this.seleccion);  //Crear un nuevo arribo
         avion.setArribo(proximoArribo);  //Asigna el evento de arribo al nuevo avion creado
         
         fel.insert(proximoArribo);   //Insertar evento de arribo en la fel

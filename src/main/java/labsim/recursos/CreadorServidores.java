@@ -13,4 +13,15 @@ public class CreadorServidores {   //Clase utilizada para definir realidades, en
 
         return new Pista(1, cola, new UnicaCola());  //retornar una pista con id=1 y su cola
     }
+
+    public static List<Servidor> cincoServidoresCincoColas(){
+
+        List<Servidor> servidores = new ArrayList<>();
+        List<Cola> cola = new ArrayList<>();
+
+        cola.add(new ColaIndividual(1));
+        servidores.add(new Pista(1, cola, new UnicaCola()));
+
+        return servidores;
+    }
 }
