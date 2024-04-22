@@ -50,6 +50,6 @@ public class TablaArribo implements Tabla{
         }else{
             ret = exponencial(r,15);
         }
-        return ret;
+        return ret + hora;
     }
 }

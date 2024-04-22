@@ -99,7 +99,7 @@ public class Arribo extends Evento{
 
         //Programar el proximo arribo
         Avion avion = new Avion(this.getEntidad().getId() + 1); //Instanciar una nueva entidad con un nuevo id (1+ que el anterior)
-        double proximoTiempo = this.getClock() + this.getTabla().nextTime(this.getClock());   //Calcular el tiempo de arribo proximo de forma aleatoria
+        double proximoTiempo = this.getTabla().nextTime(this.getClock());   //Calcular el tiempo de arribo proximo de forma aleatoria
         Arribo proximoArribo = new Arribo(proximoTiempo, avion, this.getTabla(), this.tablaSalida, this.estadisticas, this.seleccion);  //Crear un nuevo arribo
         avion.setArribo(proximoArribo);  //Asigna el evento de arribo al nuevo avion creado
         

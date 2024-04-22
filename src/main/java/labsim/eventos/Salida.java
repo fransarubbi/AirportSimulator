@@ -53,14 +53,13 @@ public class Salida extends Evento{
 
             estadisticas.setUltimaSalida(proximoTiempo);    //guarda el clock de la ultima salida para correguir el ocio de la simulacion
             
-            estadisticas.setCantidadAvionesAterrizados();    //Sumar uno a los aviones que aterrizaron  
-            double tiempoArribo = entidad.getArribo().getClock();  //Recupero el tiempo de llegada de la entidad en cuestion
-            
+            estadisticas.setCantidadAvionesAterrizados();    //Sumar uno a los aviones que aterrizaron    
+            double tiempoArribo = entidad.getInicioEspera();     //Recupero el tiempo de llegada de la entidad en cuestion
+
             if(proximoTiempo <= TAMANIOSIMULACION){ //Control
                 estadisticas.setCantidadAvionesTransito();
                 estadisticas.setTiempoTransito(proximoTiempo - tiempoArribo);
             }
-            
         }
         else{    //No hay entidades en espera, se asigna null
             servidor.setEntidadActual(null);

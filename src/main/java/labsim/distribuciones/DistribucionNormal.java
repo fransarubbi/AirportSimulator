@@ -29,6 +29,6 @@ public class DistribucionNormal {
         double y = zEstandar*varianza + media;
 
         //Escalamos y trasladamos los números aleatorios generados para que sigan la distribución normal
-        return media + desviacionEstandar * y;
+        return y;
     }
 }

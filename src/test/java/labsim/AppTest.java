@@ -80,10 +80,10 @@ import labsim.distribuciones.*;
 
         Randomizer randomizer = new CustomRandomizer();
         TablaArribo ta = new TablaArribo(randomizer);
-        double[] datos = new double[1000];
+        double[] datos = new double[10000];
         int i = 0;
 
-        for (i = 0; i < 1000; i++){
+        for (i = 0; i < 10000; i++){
             double dato = ta.nextTime(500);  //exp con media = 15
             datos[i] = dato;
         }
@@ -124,10 +124,10 @@ import labsim.distribuciones.*;
     public void testDistribucionNormal(){
 
         DistribucionNormal normal = new DistribucionNormal(5, 1);
-        double[] datos = new double[1000];
+        double[] datos = new double[10000];
         int i;
         
-        for (i = 0; i < 1000; i++){
+        for (i = 0; i < 10000; i++){
             double dato = normal.getDistribucionNormal();
             datos[i] = dato;
         }
@@ -170,10 +170,10 @@ import labsim.distribuciones.*;
         Randomizer randomizer = new CustomRandomizer();
         TablaSalida ts = new TablaSalida(randomizer);
 
-        double[] datos = new double[1000];
+        double[] datos = new double[10000];
         int i = 0;
 
-        for (i = 0; i < 1000; i++){
+        for (i = 0; i < 10000; i++){
             double dato = ts.nextTime(500);  //exp con media = 15
             datos[i] = dato;
         }

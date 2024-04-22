@@ -38,6 +38,6 @@ public class TablaSalida implements Tabla{
         double r = this.randomizer.nextRandom();
         double ret;
         ret = uniforme(10,25, r);
-        return ret;
+        return ret + hora;
     }
 }
