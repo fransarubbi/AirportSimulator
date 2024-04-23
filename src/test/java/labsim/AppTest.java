@@ -27,8 +27,7 @@ import labsim.distribuciones.*;
     public class AppTest {
 
     @Test
-    public void shouldAnswerWithTrue()
-    {
+    public void shouldAnswerWithTrue(){
         assertTrue( true );
     }
 
@@ -208,4 +207,48 @@ import labsim.distribuciones.*;
             e.printStackTrace();
         }
     }
-}
+    
+    @Test
+        public void testDistribucionPoisson(){
+
+            DistribucionPoisson normal = new DistribucionPoisson(5);
+            double[] datos = new double[10000];
+            int i;
+            
+            for (i = 0; i < 10000; i++){
+                double dato = normal.getDistribucionPoisson();
+                datos[i] = dato;
+            }
+
+            //Crear un conjunto de datos para el histograma
+            HistogramDataset dataset = new HistogramDataset();
+            dataset.addSeries("Distribución de Poisson", datos, 50);
+
+            // Crear el gráfico de histograma
+            JFreeChart chart = ChartFactory.createHistogram(
+                    "Histograma de Distribución Normal",
+                    "Valor",
+                    "Frecuencia",
+                    dataset
+            );
+
+            //Crear un panel para mostrar el gráfico
+            ChartPanel chartPanel = new ChartPanel(chart);
+            chartPanel.setPreferredSize(new Dimension(800, 600));
+
+            // Mostrar el gráfico en una ventana
+            JFrame frame = new JFrame("Gráfico de Distribución de Poisson");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(chartPanel);
+            frame.pack();
+            frame.setVisible(true);
+
+            //Pausa la ejecución para ver el grafico
+            try {
+                Thread.sleep(5000); // 5 segundos
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
