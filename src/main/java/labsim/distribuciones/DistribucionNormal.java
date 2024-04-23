@@ -2,7 +2,9 @@ package labsim.distribuciones;
 
 import java.util.Random;
 
-
+/**
+ * Clase que utiliza el metodo de Convolucion para obtener numeros aleatorios que responden a una Distribucion Normal
+ */
 public class DistribucionNormal {
 
     private double media;
