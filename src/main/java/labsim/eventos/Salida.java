@@ -44,7 +44,6 @@ public class Salida extends Evento{
             entidad.setServidor(servidor);              //Asignar servidor a la entidad
             estadisticas.setMaxCola(-1);
             estadisticas.setCantidadEspera();           //Sumar uno a los aviones que estan en espera
-            
             estadisticas.setTiempoEspera(this.getClock() - entidad.getInicioEspera());  //Suma tiempo de espera entidad X
 
             double proximoTiempo = this.getTabla().nextTime(this.getClock());  //Calcular el tiempo de salida
