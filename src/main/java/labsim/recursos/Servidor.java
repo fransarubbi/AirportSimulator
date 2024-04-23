@@ -17,12 +17,15 @@ public abstract class Servidor{
     private double tiempoInicioOcio = 0;
     private double tiempoFinOcio = 0;
     private int cantidadOcio = 0;
+    private boolean disponible;
+
 
     public Servidor(int id, List<Cola> cola, ColaServidor administrador) {
         this.id = id;
         this.cola = cola;
         this.administrador = administrador;
         this.durabilidad = 3000;
+        this.disponible = true;
     }
 
     public int getId() {
@@ -38,7 +41,7 @@ public abstract class Servidor{
     }
 
     public void setDurabilidad(double desgaste) {
-        this.durabilidad -= desgaste;
+        this.durabilidad = this.durabilidad - desgaste;
     }
 
     public Entidad getEntidadActual() {
@@ -134,5 +137,13 @@ public abstract class Servidor{
 
     public void setCantidadOcio(int cantidadOcio) {
         this.cantidadOcio = cantidadOcio;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
     }
 }

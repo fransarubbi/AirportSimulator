@@ -2,6 +2,7 @@ package labsim.eventos;
 
 import java.util.List;
 
+import labsim.distribuciones.DistribucionNormal;
 import labsim.entidades.Avion;
 import labsim.entidades.Entidad;
 import labsim.motor.FEL;
@@ -59,8 +60,10 @@ public class Arribo extends Evento{
     @Override
     public void planificador(FEL fel, List<Servidor> servidores) {
 
+        DistribucionNormal normal = new DistribucionNormal(5, 1);    //Instanciamos la dist. normal para el desgaste
         estadisticas.setCantidadAvionesArribados();      //Sumar uno a los aviones que arribaron
         Servidor servidor = this.seleccion.seleccionServidor(servidores, this.getEntidad());   //Elegir el servidor optimo
+
 
         if(servidor.ocupado()){
 
@@ -87,6 +90,14 @@ public class Arribo extends Evento{
             estadisticas.setUltimaSalida(proximoTiempo);    //guarda el clock de la ultima salida para correguir el ocio de la simulacion
             
             estadisticas.setCantidadAvionesAterrizados();  //Sumar uno a los aviones que fueron aterrizados
+            double desgaste = normal.getDistribucionNormal();
+            
+            servidor.setDurabilidad(desgaste);
+
+            if(servidor.getDurabilidad() <= 0){    /*Si la durabilidad llego a 0 o un poco menos, no se puede seguir usando la pista */
+                servidor.setDisponible(false);
+            }
+            estadisticas.setServidoresDesgaste(servidores);
             
             if(proximoTiempo <= TAMANIOSIMULACION){ //Control
                 estadisticas.setCantidadAvionesTransito();

@@ -1,8 +1,11 @@
 package labsim.recursos;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Estadisticas {
 
+    private List<Servidor> servidoresDesgaste;
     private int cantidadAvionesArribados;
     private int cantidadAvionesAterrizados;
     private int cantidadAvionesTransito;
@@ -54,6 +57,7 @@ public class Estadisticas {
         this.maxCola = 0;
         this.minCola = 10000;
         this.contador = 0;
+        this.servidoresDesgaste = new ArrayList<>();
     }
     
     /*Contadores */
@@ -242,6 +246,17 @@ public class Estadisticas {
         this.ultimaSalida = ultimaSalida;
     }
     
+
+    /*Funcion para guardar el desgaste */
+    public List<Servidor> getServidoresDesgaste() {
+        return servidoresDesgaste;
+    }
+
+    public void setServidoresDesgaste(List<Servidor> servidoresDesgaste) {
+        this.servidoresDesgaste = servidoresDesgaste;
+    }
+
+
     public String toString(float tiempoFinal){
 
         tiempoMedTransito = tiempoTransito/cantidadAvionesTransito;
@@ -279,6 +294,12 @@ public class Estadisticas {
                            + "\n              Tiempo minimo de ocio                  | " + tiempoMinOcio
                            + "\n              Tiempo maximo de ocio                  | " + tiempoMaxOcio
                            + "\n    Porcentaje de ocio respecto a la simulacion      | " + porcentajeOcio + " %" 
+                           + "\n|--------------------------------------------------------------|"
+                           + "\n              Desgaste pista 1:                      | " + servidoresDesgaste.get(0).getDurabilidad()
+                           + "\n              Desgaste pista 2:                      | " + servidoresDesgaste.get(1).getDurabilidad()
+                           + "\n              Desgaste pista 3:                      | " + servidoresDesgaste.get(2).getDurabilidad()
+                           + "\n              Desgaste pista 4:                      | " + servidoresDesgaste.get(3).getDurabilidad()
+                           + "\n              Desgaste pista 5:                      | " + servidoresDesgaste.get(4).getDurabilidad()
                            + "\n|--------------------------------------------------------------|"
                            + "\n          Tamano maximo de la cola de espera         | " + maxCola
                            + "\n          Tamano minimo de la cola de espera         | " + minCola
