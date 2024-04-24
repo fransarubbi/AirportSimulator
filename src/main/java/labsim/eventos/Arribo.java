@@ -62,13 +62,13 @@ public class Arribo extends Evento{
 
         DistribucionNormal normal = new DistribucionNormal(5, 1);    //Instanciamos la dist. normal para el desgaste
         estadisticas.setCantidadAvionesArribados();      //Sumar uno a los aviones que arribaron
-        Servidor servidor = this.seleccion.seleccionServidor(servidores, this.getEntidad());   //Elegir el servidor optimo
+        Servidor servidor = this.seleccion.seleccionServidorEstandar(servidores, this.getEntidad());   //Elegir el servidor optimo
 
 
         if(servidor.ocupado()){
 
             //El servidor esta ocupado, agregar avion a la cola
-            servidor.ponerEnCola(this.getEntidad());
+            servidor.ponerEnCola(this.getEntidad(), 0);
             estadisticas.setMaxCola(1);        //Incrementar contador de cola y verificar si es maximo
             estadisticas.setMinCola();               //Setear el minimo valor de cola
             this.getEntidad().setInicioEspera(this.getClock());

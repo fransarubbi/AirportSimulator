@@ -56,16 +56,16 @@ public abstract class Servidor{
         return this.entidadActual != null;
     }
 
-    public boolean colaVacia(){  //Pregunta si la cola esta vacia
-        return this.administrador.colaVacia(this.cola);
+    public boolean colaVacia(int i){  //Pregunta si la cola esta vacia
+        return this.administrador.colaVacia(this.cola, i);
     }
     
-    public void ponerEnCola(Entidad entidad){  //Poner entidad en la cola, ya que el servidor esta ocupado
-        this.administrador.ponerEnCola(this.cola, entidad);
+    public void ponerEnCola(Entidad entidad, int i){  //Poner entidad en la cola, ya que el servidor esta ocupado
+        this.administrador.ponerEnCola(this.cola, entidad, i);
     }
 
-    public Entidad quitarDeCola(){   //Quitar entidad de la cola para ser atendida
-        return this.administrador.quitarDeCola(this.cola);
+    public Entidad quitarDeCola(int i){   //Quitar entidad de la cola para ser atendida
+        return this.administrador.quitarDeCola(this.cola, i);
     }
 
     public double getTiempoOcio() {

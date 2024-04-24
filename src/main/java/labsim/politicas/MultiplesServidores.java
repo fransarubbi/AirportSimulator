@@ -9,8 +9,11 @@ import labsim.recursos.Servidor;
 
 public class MultiplesServidores implements EleccionServidor{
     
+    /*
+     * Politica inventada nuestra
+     */
     @Override
-    public Servidor seleccionServidor(List<Servidor> servidores, Entidad entidad){
+    public Servidor seleccionServidorAvanzado(List<Servidor> servidores, Entidad entidad){
 
         /*Primero buscamos servidores disponibles */
         List<Servidor> disponible = disponible(servidores);
@@ -31,6 +34,11 @@ public class MultiplesServidores implements EleccionServidor{
     }
 
 
+    /**
+     * Funcion que retorna el servidor con la cola mas corta o en caso de que todas tenga la misma longitud, retorna el servidor por defecto 1.
+     * @param servidores
+     * @return servidor
+     */
     private Servidor seleccionarColaMasCorta(List<Servidor> servidores) {
 
         Servidor eleccion = servidores.get(0);
@@ -111,5 +119,43 @@ public class MultiplesServidores implements EleccionServidor{
             }
         }
         return eleccion;
+    }
+
+
+
+    /*
+     * /**
+     * Overrides: Implementacion de seleccionServidor de EleccionServidor.
+     * Esta Funcion retorna un servidor desocupado o bien retorna el servidor con la cola mas corta.
+     * @param servidores
+     * @param entidad
+     * @return servidor
+     */
+    @Override
+    public Servidor seleccionServidorEstandar(List<Servidor> servidores, Entidad entidad) {
+        /*Primero buscamos servidores disponibles */
+        Servidor desocupado = servidorDesocupado(servidores);
+
+        /*Luego buscamos el servidor que está desocupado*/
+        if (desocupado == null) {
+            return seleccionarColaMasCorta(servidores);
+        } else {  
+            return desocupado;
+        }
+    }
+
+    
+    /**
+     * Funcion que retorna el primer servidor que encuentre desocupado. En caso que no haya servidor desocupado retorna null.
+     * @param servidores
+     * @return servidor or null
+     */
+    private Servidor servidorDesocupado(List<Servidor> servidores){
+        for(Servidor servidor : servidores){
+            if(!servidor.ocupado()){
+                return servidor;
+            }
+        }
+        return null;
     }
 }
