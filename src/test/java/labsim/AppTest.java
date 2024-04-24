@@ -10,7 +10,10 @@ import java.awt.*;
 
 import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.junit.Test;
 import labsim.entidades.Avion;
 import labsim.motor.FEL;
@@ -226,7 +229,7 @@ import labsim.distribuciones.*;
 
             // Crear el gráfico de histograma
             JFreeChart chart = ChartFactory.createHistogram(
-                    "Histograma de Distribución Normal",
+                    "Histograma de Distribución de Poisson",
                     "Valor",
                     "Frecuencia",
                     dataset
@@ -238,6 +241,57 @@ import labsim.distribuciones.*;
 
             // Mostrar el gráfico en una ventana
             JFrame frame = new JFrame("Gráfico de Distribución de Poisson");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setContentPane(chartPanel);
+            frame.pack();
+            frame.setVisible(true);
+
+            //Pausa la ejecución para ver el grafico
+            try {
+                Thread.sleep(5000); // 5 segundos
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Test
+        public void testDistribucionEmpiricaDiscreta(){
+
+            DistribucionEmpiricaDiscreta empirica = new DistribucionEmpiricaDiscreta();
+            Map<Double, Integer> hashMap = new HashMap<>();
+            double[] datos = new double[10000];
+            int i;
+
+            hashMap.put(0.15,3);
+            hashMap.put(0.30,4);
+            hashMap.put(0.45,3);
+            hashMap.put(0.70,5);
+            hashMap.put(0.90,1);
+            hashMap.put(1.0,6);
+            
+            for (i = 0; i < 10000; i++){
+                double dato = empirica.getDistribucionEmpiricaDiscreta(hashMap);
+                datos[i] = dato;
+            }
+
+            //Crear un conjunto de datos para el histograma
+            HistogramDataset dataset = new HistogramDataset();
+            dataset.addSeries("Distribución de Empirica Discreta", datos, 50);
+
+            // Crear el gráfico de histograma
+            JFreeChart chart = ChartFactory.createHistogram(
+                    "Histograma de Distribución Empirica Discreta",
+                    "Valor",
+                    "Frecuencia",
+                    dataset
+            );
+
+            //Crear un panel para mostrar el gráfico
+            ChartPanel chartPanel = new ChartPanel(chart);
+            chartPanel.setPreferredSize(new Dimension(800, 600));
+
+            // Mostrar el gráfico en una ventana
+            JFrame frame = new JFrame("Gráfico de Distribución Empirica Discreta");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setContentPane(chartPanel);
             frame.pack();
