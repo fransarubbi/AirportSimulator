@@ -94,9 +94,9 @@ public class Arribo extends Evento{
             
             servidor.setDurabilidad(desgaste);
 
-            if(servidor.getDurabilidad() <= 0){    /*Si la durabilidad llego a 0 o un poco menos, no se puede seguir usando la pista */
-                servidor.setDisponible(false);
-            }
+            //if(servidor.getDurabilidad() <= 0){    /*Si la durabilidad llego a 0 o un poco menos, no se puede seguir usando la pista */
+            //    servidor.setDisponible(false);
+            //}
             estadisticas.setServidoresDesgaste(servidores);
             
             if(proximoTiempo <= TAMANIOSIMULACION){ //Control
