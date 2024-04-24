@@ -4,7 +4,12 @@ import java.util.List;
 
 import labsim.entidades.Entidad;
 import labsim.recursos.Servidor;
-
+/**
+ * Clase que implementa la siguiente politica:
+ * A cada avión que llega al espacio aéreo del aeropuerto, en caso de no disponer de pista
+ * libre, se le asignará la pista con la cola más corta, o bien la primera si todas tienen la misma
+ * longitud.
+ */
 public class NuevaPolitica implements EleccionServidor{
     
     /**
@@ -30,7 +35,7 @@ public class NuevaPolitica implements EleccionServidor{
     /**
      * Funcion que retorna el servidor con la cola mas corta o en caso de que todas tenga la misma longitud, retorna el servidor por defecto 1.
      * @param servidores
-     * @return
+     * @return servidor
      */
     private Servidor seleccionarColaMasCorta(List<Servidor> servidores) {
         Servidor eleccion = servidores.get(0);
@@ -48,6 +53,11 @@ public class NuevaPolitica implements EleccionServidor{
         return eleccion;
     }
 
+    /**
+     * Funcion que retorna el primer servidor que encuentre desocupado. En caso que no haya servidor desocupado retorna null.
+     * @param servidores
+     * @return servidor or null
+     */
     private Servidor servidorDesocupado(List<Servidor> servidores){
         for(Servidor servidor : servidores){
             if(!servidor.ocupado()){
