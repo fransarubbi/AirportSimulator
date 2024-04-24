@@ -64,7 +64,6 @@ public class Arribo extends Evento{
         estadisticas.setCantidadAvionesArribados();      //Sumar uno a los aviones que arribaron
         Servidor servidor = this.seleccion.seleccionServidor(servidores, this.getEntidad());   //Elegir el servidor optimo
 
-
         if(servidor.ocupado()){
 
             //El servidor esta ocupado, agregar avion a la cola
@@ -86,7 +85,6 @@ public class Arribo extends Evento{
             double proximoTiempo = this.tablaSalida.nextTime(this.getClock());   //Calcular el tiempo de salida
             Salida salida = new Salida(proximoTiempo, this.getEntidad(), this.tablaSalida, this.estadisticas); //Creamos el Evento Salida
             fel.insert(salida);   //Insertar evento de salida en la fel
-
             estadisticas.setUltimaSalida(proximoTiempo);    //guarda el clock de la ultima salida para correguir el ocio de la simulacion
             
             estadisticas.setCantidadAvionesAterrizados();  //Sumar uno a los aviones que fueron aterrizados
@@ -94,9 +92,9 @@ public class Arribo extends Evento{
             
             servidor.setDurabilidad(desgaste);
 
-            if(servidor.getDurabilidad() <= 0){    /*Si la durabilidad llego a 0 o un poco menos, no se puede seguir usando la pista */
-                servidor.setDisponible(false);
-            }
+            //if(servidor.getDurabilidad() <= 0){    /*Si la durabilidad llego a 0 o un poco menos, no se puede seguir usando la pista */
+            //    servidor.setDisponible(false);
+            //}
             estadisticas.setServidoresDesgaste(servidores);
             
             if(proximoTiempo <= TAMANIOSIMULACION){ //Control
@@ -113,7 +111,6 @@ public class Arribo extends Evento{
         double proximoTiempo = this.getTabla().nextTime(this.getClock());   //Calcular el tiempo de arribo proximo de forma aleatoria
         Arribo proximoArribo = new Arribo(proximoTiempo, avion, this.getTabla(), this.tablaSalida, this.estadisticas, this.seleccion);  //Crear un nuevo arribo
         avion.setArribo(proximoArribo);  //Asigna el evento de arribo al nuevo avion creado
-        
         fel.insert(proximoArribo);   //Insertar evento de arribo en la fel
     }
 

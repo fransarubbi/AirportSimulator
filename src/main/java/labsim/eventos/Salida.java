@@ -45,11 +45,9 @@ public class Salida extends Evento{
             estadisticas.setMaxCola(-1);
             estadisticas.setCantidadEspera();           //Sumar uno a los aviones que estan en espera
             estadisticas.setTiempoEspera(this.getClock() - entidad.getInicioEspera());  //Suma tiempo de espera entidad X
-
             double proximoTiempo = this.getTabla().nextTime(this.getClock());  //Calcular el tiempo de salida
             Salida salida = new Salida(proximoTiempo, servidor.getEntidadActual(), (TablaSalida)this.getTabla(), this.estadisticas);  //Crear nueva salida
             fel.insert(salida);   //Insertar evento de salida en la fel
-
             estadisticas.setUltimaSalida(proximoTiempo);    //guarda el clock de la ultima salida para correguir el ocio de la simulacion
             
             estadisticas.setCantidadAvionesAterrizados();    //Sumar uno a los aviones que aterrizaron    
