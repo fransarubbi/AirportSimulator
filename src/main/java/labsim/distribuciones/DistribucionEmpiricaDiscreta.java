@@ -1,28 +1,24 @@
 package labsim.distribuciones;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.List;
 import java.util.Random;
 
 public class DistribucionEmpiricaDiscreta {
 
-    private Map<Double, Integer> empirica;
     private Random random;
 
-    public DistribucionEmpiricaDiscreta() {
+    public DistribucionEmpiricaDiscreta(){
         this.random = new Random(System.currentTimeMillis());
-        this.empirica = new HashMap<>();
     }
 
-    public int getDistribucionEmpiricaDiscreta(Map<Double, Integer> hashMap){
-        this.empirica = hashMap;
-        int valor = random.nextInt();
-        int ret = 0;
-        for (Map.Entry<Double, Integer> entry : this.empirica.entrySet()) {
-            if (valor < entry.getKey()) {
-                ret = entry.getValue(); 
+    public double getDistribucionEmpiricaDiscreta(List<Double> empirica){
+        double valorAleatorio = random.nextDouble();
+        for(int i = 0; i < empirica.size() ; i += 2){
+            if(valorAleatorio < empirica.get(i)){
+                return empirica.get(i+1);
             }
         }
-        return ret;
+        return 0;
     }
-
 }
+
