@@ -68,7 +68,7 @@ public class Arribo extends Evento{
         if(servidor.ocupado()){
 
             //El servidor esta ocupado, agregar avion a la cola
-            servidor.ponerEnCola(this.getEntidad(), 0);
+            servidor.ponerEnCola(this.getEntidad());
             estadisticas.setMaxCola(1);        //Incrementar contador de cola y verificar si es maximo
             estadisticas.setMinCola();               //Setear el minimo valor de cola
             this.getEntidad().setInicioEspera(this.getClock());

@@ -5,7 +5,7 @@ import labsim.entidades.Entidad;
 
 public interface ColaServidor {   //Interfaz para poder manipular la cola del servidor
     
-    boolean colaVacia(List<Cola> cola, int i);
-    void ponerEnCola(List<Cola> cola, Entidad entidad, int i);
-    Entidad quitarDeCola(List<Cola> cola, int i);
+    boolean colaVacia(List<Cola> cola);
+    void ponerEnCola(List<Cola> cola, Entidad entidad);
+    Entidad quitarDeCola(List<Cola> cola);
 }

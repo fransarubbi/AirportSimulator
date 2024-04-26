@@ -28,22 +28,4 @@ public class CreadorServidores {   //Clase utilizada para definir realidades, en
 
         return servidores;
     }
-
-
-    public static List<Servidor> nServidoresyColas(int n, int y){
-        
-        List<Servidor> servidores = new ArrayList<>();
-        List<Cola> cola = new ArrayList<>();
-
-        for(int j = 0; j < y; j++){
-            cola.add(new ColaIndividual(j+1));
-        }
-
-        for(int i = 0; i < n; i++){
-            Servidor servidor = new Pista(i+1, cola, new MultiplesColas());
-            servidores.add(servidor);
-        }
-
-        return servidores;
-    }
 }
