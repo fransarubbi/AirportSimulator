@@ -21,6 +21,7 @@ public class Estadisticas {
 
     private double tiempoOcio;
     private double tiempoMinOcio;
+    private double tiempoMedOcio;
     private double tiempoMaxOcio;
 
     private double tiempoTransito; 
@@ -50,6 +51,7 @@ public class Estadisticas {
         this.cantidadOcio = 0;
         this.tiempoMinOcio = 10000;
         this.tiempoMaxOcio = 0;
+        this.tiempoMedOcio = 0;
         this.tiempoTransito = 0;
         this.tiempoMinTransito = 10000;
         this.tiempoMedTransito = 0;
@@ -261,6 +263,7 @@ public class Estadisticas {
 
         tiempoMedTransito = tiempoTransito/cantidadAvionesTransito;
         tiempoMedEspera = tiempoEspera/cantidadEspera;
+        tiempoMedOcio = tiempoOcio/servidoresDesgaste.size();
         double porcentajeOcio = (tiempoOcio/tiempoFinal) * 100;
 
         if(tiempoMinEspera == 10000){
@@ -292,6 +295,7 @@ public class Estadisticas {
                            + "\n|--------------------------------------------------------------|"
                            + "\n              Tiempo total de ocio                   | " + tiempoOcio
                            + "\n              Tiempo minimo de ocio                  | " + tiempoMinOcio
+                           + "\n              Tiempo medio de ocio                   | " + tiempoMedOcio
                            + "\n              Tiempo maximo de ocio                  | " + tiempoMaxOcio
                            + "\n    Porcentaje de ocio respecto a la simulacion      | " + porcentajeOcio + " %" 
                            + "\n|--------------------------------------------------------------|"

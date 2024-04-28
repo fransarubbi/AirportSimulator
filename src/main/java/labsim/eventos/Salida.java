@@ -37,9 +37,9 @@ public class Salida extends Evento{
 
         Servidor servidor = this.getEntidad().getServidor();
 
-        if(!servidor.colaVacia(0)){  //Si la cola no esta vacia, hay entidades en espera
+        if(!servidor.colaVacia()){  //Si la cola no esta vacia, hay entidades en espera
 
-            Entidad entidad = servidor.quitarDeCola(0);  //Sacar entidad de la cola
+            Entidad entidad = servidor.quitarDeCola();  //Sacar entidad de la cola
             servidor.setEntidadActual(entidad);         //Asignar al servidor para que se atienda
             entidad.setServidor(servidor);              //Asignar servidor a la entidad
             estadisticas.setMaxCola(-1);

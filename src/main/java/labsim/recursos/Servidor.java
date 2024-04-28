@@ -56,7 +56,7 @@ public abstract class Servidor{
         return this.entidadActual != null;
     }
 
-    public boolean colaVacia(int i){  //Pregunta si la cola esta vacia
+    public boolean colaVacia(){  //Pregunta si la cola esta vacia
         return this.administrador.colaVacia(this.cola);
     }
     
@@ -64,7 +64,7 @@ public abstract class Servidor{
         this.administrador.ponerEnCola(this.cola, entidad);
     }
 
-    public Entidad quitarDeCola(int i){   //Quitar entidad de la cola para ser atendida
+    public Entidad quitarDeCola(){   //Quitar entidad de la cola para ser atendida
         return this.administrador.quitarDeCola(this.cola);
     }
 

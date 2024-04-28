@@ -105,6 +105,7 @@ public class Arribo extends Evento{
             }
             
             estadisticas.setTiempoOcio(servidor.getTiempoFinOcio() - servidor.getTiempoInicioOcio()); //Sumamos el Ocio
+            System.out.println("Servidor numero: " + servidor.getId() + "Inicio Ocio: " + servidor.getTiempoInicioOcio() + "Fin Ocio: " + servidor.getTiempoFinOcio());
         
         }
 
