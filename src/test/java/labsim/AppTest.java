@@ -74,7 +74,7 @@ import labsim.distribuciones.*;
         }
     }
 
-
+    
     @Test
     public void testDistribucionExponencial(){
 
@@ -209,6 +209,7 @@ import labsim.distribuciones.*;
         }
     }
     
+    
     @Test
     public void testDistribucionPoisson(){
 
@@ -252,6 +253,52 @@ import labsim.distribuciones.*;
         }
     }
 
+
+    @Test
+    public void testDistribucionTriangular(){
+
+        DistribucionTriangular triangular = new DistribucionTriangular(1, 2, 9);
+        double[] datos = new double[100000];
+        int i;
+        
+        for (i = 0; i < 100000; i++){
+            double dato = triangular.getDistribucionTriangular();
+            datos[i] = dato;
+        }
+
+        //Crear un conjunto de datos para el histograma
+        HistogramDataset dataset = new HistogramDataset();
+        dataset.addSeries("Distribución Triangular", datos, 50);
+
+        // Crear el gráfico de histograma
+        JFreeChart chart = ChartFactory.createHistogram(
+                "Histograma de Distribución Triangular",
+                "Valor",
+                "Frecuencia",
+                dataset
+        );
+
+        //Crear un panel para mostrar el gráfico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(800, 600));
+
+        // Mostrar el gráfico en una ventana
+        JFrame frame = new JFrame("Gráfico de Distribución Triangular");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(chartPanel);
+        frame.pack();
+        frame.setVisible(true);
+
+        //Pausa la ejecución para ver el grafico
+        try {
+            Thread.sleep(5000); // 5 segundos
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    
     @Test
     public void tetsDistribucionEmpiricaDiscreta() {
         List<Double> empirica = new ArrayList<>();

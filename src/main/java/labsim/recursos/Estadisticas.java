@@ -262,7 +262,8 @@ public class Estadisticas {
     public String toString(float tiempoFinal){
 
         tiempoMedTransito = tiempoTransito/cantidadAvionesTransito;
-        tiempoMedEspera = tiempoEspera/cantidadEspera;
+        tiempoMedEspera = tiempoEspera/cantidadAvionesArribados;
+        double tiempoMedEsperaExtra = tiempoEspera/cantidadOcio;
         tiempoMedOcio = tiempoOcio/servidoresDesgaste.size();
         double porcentajeOcio = (tiempoOcio/tiempoFinal) * 100;
 
@@ -277,37 +278,64 @@ public class Estadisticas {
             minCola = 0;
         }
 
-        String informacion = "\n|--------------------------------------------------------------|"
-                           + "\n                        ESTADISTICAS                            "
-                           + "\n|--------------------------------------------------------------|"
-                           + "\n              Cantidad total de arribo               | " + cantidadAvionesArribados
-                           + "\n              Cantidad total de aterrizajes          | " + cantidadAvionesAterrizados
-                           + "\n|--------------------------------------------------------------|"
-                           + "\n              Tiempo total de espera                 | " + tiempoEspera
-                           + "\n              Tiempo minimo de espera                | " + tiempoMinEspera
-                           + "\n              Tiempo medio de espera                 | " + tiempoMedEspera
-                           + "\n              Tiempo maximo de espera                | " + tiempoMaxEspera
-                           + "\n|--------------------------------------------------------------|"
-                           + "\n              Tiempo total de transito               | " + tiempoTransito
-                           + "\n              Tiempo minimo de transito              | " + tiempoMinTransito
-                           + "\n              Tiempo medio de transito               | " + tiempoMedTransito
-                           + "\n              Tiempo maximo de transito              | " + tiempoMaxTransito
-                           + "\n|--------------------------------------------------------------|"
-                           + "\n              Tiempo total de ocio                   | " + tiempoOcio
-                           + "\n              Tiempo minimo de ocio                  | " + tiempoMinOcio
-                           + "\n              Tiempo medio de ocio                   | " + tiempoMedOcio
-                           + "\n              Tiempo maximo de ocio                  | " + tiempoMaxOcio
-                           + "\n    Porcentaje de ocio respecto a la simulacion      | " + porcentajeOcio + " %" 
-                           + "\n|--------------------------------------------------------------|"
-                           + "\n              Desgaste pista 1:                      | " + servidoresDesgaste.get(0).getDurabilidad()
-                           + "\n              Desgaste pista 2:                      | " + servidoresDesgaste.get(1).getDurabilidad()
-                           + "\n              Desgaste pista 3:                      | " + servidoresDesgaste.get(2).getDurabilidad()
-                           + "\n              Desgaste pista 4:                      | " + servidoresDesgaste.get(3).getDurabilidad()
-                           + "\n              Desgaste pista 5:                      | " + servidoresDesgaste.get(4).getDurabilidad()
-                           + "\n|--------------------------------------------------------------|"
-                           + "\n          Tamano maximo de la cola de espera         | " + maxCola
-                           + "\n          Tamano minimo de la cola de espera         | " + minCola
-                           + "\n|--------------------------------------------------------------|";
+        String informacion = "\n|----------------------------------------------------------------|"
+                           + "\n|                         ESTADISTICAS                           |"
+                           + "\n|----------------------------------------------------------------|"
+                           + "\n|              Cantidad total de arribo                          | " + cantidadAvionesArribados
+                           + "\n|              Cantidad total de aterrizajes                     | " + cantidadAvionesAterrizados
+                           + "\n|----------------------------------------------------------------|"
+                           + "\n|                      ESTADISTICAS ESPERA                       |"   
+                           + "\n|----------------------------------------------------------------|"                   
+                           + "\n|              Tiempo total de espera                            | " + tiempoEspera
+                           + "\n|              Tiempo minimo de espera                           | " + tiempoMinEspera
+                           + "\n|              Tiempo medio de espera                            | " + tiempoMedEspera
+                           + "\n|              Tiempo medio de espera, en situacion de espera    | " + tiempoMedEsperaExtra
+                           + "\n|              Tiempo maximo de espera                           | " + tiempoMaxEspera
+                           + "\n|----------------------------------------------------------------|"
+                           + "\n|                      ESTADISTICAS TRANSITO                     |"   
+                           + "\n|----------------------------------------------------------------|"  
+                           + "\n|              Tiempo total de transito                          | " + tiempoTransito
+                           + "\n|              Tiempo minimo de transito                         | " + tiempoMinTransito
+                           + "\n|              Tiempo medio de transito                          | " + tiempoMedTransito
+                           + "\n|              Tiempo maximo de transito                         | " + tiempoMaxTransito
+                           + "\n|----------------------------------------------------------------|"
+                           + "\n|                      ESTADISTICAS OCIO                         |"   
+                           + "\n|----------------------------------------------------------------|"  
+                           + "\n|              Tiempo total de ocio                              | " + tiempoOcio
+                           + "\n|              Tiempo minimo de ocio                             | " + tiempoMinOcio
+                           + "\n|              Tiempo medio de ocio                              | " + tiempoMedOcio
+                           + "\n|              Tiempo maximo de ocio                             | " + tiempoMaxOcio
+                           + "\n|----------------------------------------------------------------|"
+                           + "\n|                 ESTADISTICAS OCIO SERVIDORES                   |"   
+                           + "\n|----------------------------------------------------------------|"  
+                           + "\n|              Tiempo total ocio servidor 1                      | " + servidoresDesgaste.get(0).getTiempoTotalOcio()
+                           + "\n|              Tiempo total ocio servidor 2                      | " + servidoresDesgaste.get(1).getTiempoTotalOcio()
+                           + "\n|              Tiempo total ocio servidor 3                      | " + servidoresDesgaste.get(2).getTiempoTotalOcio()
+                           + "\n|              Tiempo total ocio servidor 4                      | " + servidoresDesgaste.get(3).getTiempoTotalOcio()
+                           + "\n|              Tiempo total ocio servidor 5                      | " + servidoresDesgaste.get(4).getTiempoTotalOcio()
+                           + "\n|    Porcentaje de ocio respecto a la simulacion                 | " + porcentajeOcio + " %" 
+                           + "\n|----------------------------------------------------------------|"
+                           + "\n|               ESTADISTICAS TIEMPO DE USO SERVIDORES            |"   
+                           + "\n|----------------------------------------------------------------|"  
+                           + "\n|              Tiempo total ocupado servidor 1                   | " + (tiempoFinal - servidoresDesgaste.get(0).getTiempoTotalOcio())
+                           + "\n|              Tiempo total ocupado servidor 2                   | " + (tiempoFinal - servidoresDesgaste.get(1).getTiempoTotalOcio())
+                           + "\n|              Tiempo total ocupado servidor 3                   | " + (tiempoFinal - servidoresDesgaste.get(2).getTiempoTotalOcio())
+                           + "\n|              Tiempo total ocupado servidor 4                   | " + (tiempoFinal - servidoresDesgaste.get(3).getTiempoTotalOcio())
+                           + "\n|              Tiempo total ocupado servidor 5                   | " + (tiempoFinal - servidoresDesgaste.get(4).getTiempoTotalOcio())
+                           + "\n|----------------------------------------------------------------|"
+                           + "\n|             ESTADISTICAS DESGASTE SERVIDORES                   |"   
+                           + "\n|----------------------------------------------------------------|"  
+                           + "\n|              Desgaste servidor 1:                              | " + servidoresDesgaste.get(0).getDurabilidad()
+                           + "\n|              Desgaste servidor 2:                              | " + servidoresDesgaste.get(1).getDurabilidad()
+                           + "\n|              Desgaste servidor 3:                              | " + servidoresDesgaste.get(2).getDurabilidad()
+                           + "\n|              Desgaste servidor 4:                              | " + servidoresDesgaste.get(3).getDurabilidad()
+                           + "\n|              Desgaste servidor 5:                              | " + servidoresDesgaste.get(4).getDurabilidad()
+                           + "\n|----------------------------------------------------------------|"
+                           + "\n|                ESTADISTICAS COLA ESPERA                        |"   
+                           + "\n|----------------------------------------------------------------|" 
+                           + "\n|          Tamano maximo de la cola de espera                    | " + maxCola
+                           + "\n|          Tamano minimo de la cola de espera                    | " + minCola
+                           + "\n|----------------------------------------------------------------|";
         return informacion;
     }
 }

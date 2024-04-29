@@ -16,6 +16,8 @@ public abstract class Servidor{
     private double tiempoMaxOcio = 0;
     private double tiempoInicioOcio = 0;
     private double tiempoFinOcio = 0;
+    private double tiempoTotalOcio = 0;
+
     private int cantidadOcio = 0;
     private boolean disponible;
 
@@ -109,6 +111,14 @@ public abstract class Servidor{
 
     public void setCantidadOcio() {
         this.cantidadOcio++;
+    }
+
+    public double getTiempoTotalOcio() {
+        return tiempoTotalOcio;
+    }
+
+    public void setTiempoTotalOcio(double tiempoTotalOcio) {
+        this.tiempoTotalOcio += tiempoTotalOcio;
     }
 
     public List<Cola> getCola() {
