@@ -7,10 +7,15 @@ import java.util.List;
 import labsim.entidades.Entidad;
 import labsim.recursos.Servidor;
 
+/**
+ * Clase que implementa la interface EleccionServidor.
+ */
 public class MultiplesServidores implements EleccionServidor{
     
     /*
-     * Politica inventada nuestra
+     * Politica inventada nuestra.
+     * Función que implementa una lógica avanzada para seleccionar un servidor para atender una entidad, 
+     * considerando la disponibilidad de servidores, su ocupación, la longitud de sus colas y su condición general.
      */
     @Override
     public Servidor seleccionServidorAvanzado(List<Servidor> servidores, Entidad entidad){
@@ -57,7 +62,11 @@ public class MultiplesServidores implements EleccionServidor{
         return eleccion;
     }
 
-
+    /**
+     * Funcion que retorna un servidor que este desocupado. En caso que no haya retorna null.
+     * @param servidores
+     * @return Servidor
+     */
     private Servidor desocupado(List<Servidor> servidores){
         
         ArrayList<Servidor> candidatos = new ArrayList<>();  /*Puedo tener mas de un servidor libre*/
@@ -87,7 +96,11 @@ public class MultiplesServidores implements EleccionServidor{
         }
     }
 
-
+    /**
+     * Funcion que retorna una lista de servidores que estan disponibles en la simulacion. En caso que haya disponible retorna null.
+     * @param servidores
+     * @return servidores
+     */
     private List<Servidor> disponible(List<Servidor> servidores){
         
         List<Servidor> servidoresDisponibles = new ArrayList<>();
@@ -106,7 +119,11 @@ public class MultiplesServidores implements EleccionServidor{
         }
     }
 
-
+    /**
+     * Funcion que busca y retorna el servidor con la mayor durabilidad o en su defecto el primero.
+     * @param servidores
+     * @return servidor
+     */
     private Servidor noHayDisponible(List<Servidor> servidores){
 
         Servidor eleccion = servidores.get(0);
@@ -120,11 +137,7 @@ public class MultiplesServidores implements EleccionServidor{
         }
         return eleccion;
     }
-
-
-
     
-
     /*
      * /**
      * Overrides: Implementacion de seleccionServidor de EleccionServidor.

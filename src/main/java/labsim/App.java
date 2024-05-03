@@ -5,7 +5,7 @@ import labsim.motor.Simulacion;
 import labsim.politicas.MultiplesServidores;
 import labsim.recursos.*;
 /**
- * Funcion que contiene una lista de servidores y el tamaño de una simulacion.
+ * Clase principal.
  */
 public class App {
 
