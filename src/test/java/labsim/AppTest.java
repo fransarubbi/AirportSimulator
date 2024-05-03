@@ -24,12 +24,11 @@ import labsim.tablas.TablaSalida;
 import labsim.eventos.*;
 import labsim.distribuciones.*;
 
-
-    public class AppTest {
+public class AppTest {
 
     @Test
-    public void shouldAnswerWithTrue(){
-        assertTrue( true );
+    public void shouldAnswerWithTrue() {
+        assertTrue(true);
     }
 
     @Test
@@ -38,10 +37,10 @@ import labsim.distribuciones.*;
         Randomizer randomizer = new CustomRandomizer();
         TablaArribo ta = new TablaArribo(randomizer);
         TablaSalida ts = new TablaSalida(randomizer);
-        List<Evento> listaPrueba = new ArrayList<>();  //Creamos lista auxiliar de eventos
+        List<Evento> listaPrueba = new ArrayList<>(); // Creamos lista auxiliar de eventos
 
-        //Esta insercion esta desordenada temporalmente, por ende haremos la insercion
-        //en la fel, para corroborar que funciona el metodo de ordenamiento en la misma
+        // Esta insercion esta desordenada temporalmente, por ende haremos la insercion
+        // en la fel, para corroborar que funciona el metodo de ordenamiento en la misma
         listaPrueba.add(new Arribo(1.0, new Avion(1), ta, ts, new Estadisticas(), new MultiplesServidores()));
         listaPrueba.add(new Salida(3.0, new Avion(1), ts, new Estadisticas()));
         listaPrueba.add(new Arribo(2.0, new Avion(2), ta, ts, new Estadisticas(), new MultiplesServidores()));
@@ -50,13 +49,13 @@ import labsim.distribuciones.*;
         listaPrueba.add(new Salida(6.0, new Avion(3), ts, new Estadisticas()));
         listaPrueba.add(new Arribo(5.0, new Avion(4), ta, ts, new Estadisticas(), new MultiplesServidores()));
 
-        //Insertamos en la fel para que los ordene
+        // Insertamos en la fel para que los ordene
         FEL fel = new FEL();
         for (Evento evento : listaPrueba) {
             fel.insert(evento);
         }
 
-        //Limpiamos la lista y la cargamos de nuevo como deberian estar los elementos
+        // Limpiamos la lista y la cargamos de nuevo como deberian estar los elementos
         listaPrueba.clear();
         listaPrueba.add(new Arribo(1.0, new Avion(1), ta, ts, new Estadisticas(), new MultiplesServidores()));
         listaPrueba.add(new Arribo(2.0, new Avion(2), ta, ts, new Estadisticas(), new MultiplesServidores()));
@@ -65,8 +64,8 @@ import labsim.distribuciones.*;
         listaPrueba.add(new Salida(5.0, new Avion(2), ts, new Estadisticas()));
         listaPrueba.add(new Arribo(5.0, new Avion(4), ta, ts, new Estadisticas(), new MultiplesServidores()));
         listaPrueba.add(new Salida(6.0, new Avion(3), ts, new Estadisticas()));
-        
-        //Comprobación de igualdad de eventos
+
+        // Comprobación de igualdad de eventos
         for (int i = 0; i < listaPrueba.size(); i++) {
             Evento eventoListaPrueba = listaPrueba.get(i);
             Evento eventoFel = fel.getProximo();
@@ -74,44 +73,42 @@ import labsim.distribuciones.*;
         }
     }
 
-    
     @Test
-    public void testDistribucionExponencial(){
+    public void testDistribucionExponencial() {
 
         Randomizer randomizer = new CustomRandomizer();
         TablaArribo ta = new TablaArribo(randomizer);
         double[] datos = new double[10000];
         int i = 0;
 
-        for (i = 0; i < 10000; i++){
-            double dato = ta.nextTime(500);  //exp con media = 15
+        for (i = 0; i < 10000; i++) {
+            double dato = ta.nextTime(500); // exp con media = 15
             datos[i] = dato;
         }
 
-        //Crear un conjunto de datos para el histograma
+        // Crear un conjunto de datos para el histograma
         HistogramDataset dataset = new HistogramDataset();
         dataset.addSeries("Distribución Exponencial Media = 15", datos, 50);
 
-        //Crear el gráfico de histograma
+        // Crear el gráfico de histograma
         JFreeChart chart = ChartFactory.createHistogram(
                 "Histograma de Distribución Exponencial",
                 "Valor",
                 "Frecuencia",
-                dataset
-        );
+                dataset);
 
-        //Crear un panel para mostrar el gráfico
+        // Crear un panel para mostrar el gráfico
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
-        //Mostrar el gráfico en una ventana
+        // Mostrar el gráfico en una ventana
         JFrame frame = new JFrame("Gráfico de Distribución Exponencial");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(chartPanel);
         frame.pack();
         frame.setVisible(true);
 
-        //Pausa la ejecución para ver el grafico
+        // Pausa la ejecución para ver el grafico
         try {
             Thread.sleep(5000); // 5 segundos
         } catch (InterruptedException e) {
@@ -119,20 +116,19 @@ import labsim.distribuciones.*;
         }
     }
 
-    
     @Test
-    public void testDistribucionNormal(){
+    public void testDistribucionNormal() {
 
         DistribucionNormal normal = new DistribucionNormal(5, 1);
         double[] datos = new double[10000];
         int i;
-        
-        for (i = 0; i < 10000; i++){
+
+        for (i = 0; i < 10000; i++) {
             double dato = normal.getDistribucionNormal();
             datos[i] = dato;
         }
 
-        //Crear un conjunto de datos para el histograma
+        // Crear un conjunto de datos para el histograma
         HistogramDataset dataset = new HistogramDataset();
         dataset.addSeries("Distribución Normal", datos, 50);
 
@@ -141,10 +137,9 @@ import labsim.distribuciones.*;
                 "Histograma de Distribución Normal",
                 "Valor",
                 "Frecuencia",
-                dataset
-        );
+                dataset);
 
-        //Crear un panel para mostrar el gráfico
+        // Crear un panel para mostrar el gráfico
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
@@ -155,7 +150,7 @@ import labsim.distribuciones.*;
         frame.pack();
         frame.setVisible(true);
 
-        //Pausa la ejecución para ver el grafico
+        // Pausa la ejecución para ver el grafico
         try {
             Thread.sleep(5000); // 5 segundos
         } catch (InterruptedException e) {
@@ -163,9 +158,8 @@ import labsim.distribuciones.*;
         }
     }
 
-
     @Test
-    public void testDistribucionUniforme(){
+    public void testDistribucionUniforme() {
 
         Randomizer randomizer = new CustomRandomizer();
         TablaSalida ts = new TablaSalida(randomizer);
@@ -173,56 +167,54 @@ import labsim.distribuciones.*;
         double[] datos = new double[10000];
         int i = 0;
 
-        for (i = 0; i < 10000; i++){
-            double dato = ts.nextTime(500);  //exp con media = 15
+        for (i = 0; i < 10000; i++) {
+            double dato = ts.nextTime(500); // exp con media = 15
             datos[i] = dato;
         }
 
-        //Crear un conjunto de datos para el histograma
+        // Crear un conjunto de datos para el histograma
         HistogramDataset dataset = new HistogramDataset();
         dataset.addSeries("Distribución Uniforme", datos, 50);
 
-        //Crear el gráfico de histograma
+        // Crear el gráfico de histograma
         JFreeChart chart = ChartFactory.createHistogram(
                 "Histograma de Distribución Uniforme",
                 "Valor",
                 "Frecuencia",
-                dataset
-        );
+                dataset);
 
-        //Crear un panel para mostrar el gráfico
+        // Crear un panel para mostrar el gráfico
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
-        //Mostrar el gráfico en una ventana
+        // Mostrar el gráfico en una ventana
         JFrame frame = new JFrame("Gráfico de Distribución Uniforme");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(chartPanel);
         frame.pack();
         frame.setVisible(true);
 
-        //Pausa la ejecución para ver el grafico
+        // Pausa la ejecución para ver el grafico
         try {
             Thread.sleep(5000); // 5 segundos
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    
-    
+
     @Test
-    public void testDistribucionPoisson(){
+    public void testDistribucionPoisson() {
 
         DistribucionPoisson normal = new DistribucionPoisson(8);
         double[] datos = new double[10000];
         int i;
-        
-        for (i = 0; i < 10000; i++){
+
+        for (i = 0; i < 10000; i++) {
             double dato = normal.getDistribucionPoisson();
             datos[i] = dato;
         }
 
-        //Crear un conjunto de datos para el histograma
+        // Crear un conjunto de datos para el histograma
         HistogramDataset dataset = new HistogramDataset();
         dataset.addSeries("Distribución de Poisson", datos, 50);
 
@@ -231,10 +223,9 @@ import labsim.distribuciones.*;
                 "Histograma de Distribución de Poisson",
                 "Valor",
                 "Frecuencia",
-                dataset
-        );
+                dataset);
 
-        //Crear un panel para mostrar el gráfico
+        // Crear un panel para mostrar el gráfico
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
@@ -245,7 +236,7 @@ import labsim.distribuciones.*;
         frame.pack();
         frame.setVisible(true);
 
-        //Pausa la ejecución para ver el grafico
+        // Pausa la ejecución para ver el grafico
         try {
             Thread.sleep(5000); // 5 segundos
         } catch (InterruptedException e) {
@@ -253,20 +244,19 @@ import labsim.distribuciones.*;
         }
     }
 
-
     @Test
-    public void testDistribucionTriangular(){
+    public void testDistribucionTriangular() {
 
         DistribucionTriangular triangular = new DistribucionTriangular(1, 2, 9);
         double[] datos = new double[100000];
         int i;
-        
-        for (i = 0; i < 100000; i++){
+
+        for (i = 0; i < 100000; i++) {
             double dato = triangular.getDistribucionTriangular();
             datos[i] = dato;
         }
 
-        //Crear un conjunto de datos para el histograma
+        // Crear un conjunto de datos para el histograma
         HistogramDataset dataset = new HistogramDataset();
         dataset.addSeries("Distribución Triangular", datos, 50);
 
@@ -275,10 +265,9 @@ import labsim.distribuciones.*;
                 "Histograma de Distribución Triangular",
                 "Valor",
                 "Frecuencia",
-                dataset
-        );
+                dataset);
 
-        //Crear un panel para mostrar el gráfico
+        // Crear un panel para mostrar el gráfico
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
@@ -289,7 +278,7 @@ import labsim.distribuciones.*;
         frame.pack();
         frame.setVisible(true);
 
-        //Pausa la ejecución para ver el grafico
+        // Pausa la ejecución para ver el grafico
         try {
             Thread.sleep(5000); // 5 segundos
         } catch (InterruptedException e) {
@@ -297,8 +286,6 @@ import labsim.distribuciones.*;
         }
     }
 
-
-    
     @Test
     public void tetsDistribucionEmpiricaDiscreta() {
         List<Double> empirica = new ArrayList<>();
@@ -307,8 +294,8 @@ import labsim.distribuciones.*;
         int i;
 
         // Definir la distribución empírica discreta
-        empirica.add(0.15); //Probabilidad Acomulada
-        empirica.add(2.0);  //Valor Deseado
+        empirica.add(0.15); // Probabilidad Acomulada
+        empirica.add(2.0); // Valor Deseado
         empirica.add(0.30);
         empirica.add(3.0);
         empirica.add(0.45);
@@ -321,13 +308,13 @@ import labsim.distribuciones.*;
         empirica.add(7.0);
         empirica.add(1.0);
         empirica.add(8.0);
-        
-        for (i = 0; i < 10000; i++){
+
+        for (i = 0; i < 10000; i++) {
             double dato = distribucion.getDistribucionEmpiricaDiscreta(empirica);
             datos[i] = dato;
         }
 
-        //Crear un conjunto de datos para el histograma
+        // Crear un conjunto de datos para el histograma
         HistogramDataset dataset = new HistogramDataset();
         dataset.addSeries("Distribución Empirica Discreta", datos, 50);
 
@@ -336,10 +323,9 @@ import labsim.distribuciones.*;
                 "Histograma de Distribución Empirica Discreta",
                 "Valor",
                 "Frecuencia",
-                dataset
-        );
+                dataset);
 
-        //Crear un panel para mostrar el gráfico
+        // Crear un panel para mostrar el gráfico
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setPreferredSize(new Dimension(800, 600));
 
@@ -350,7 +336,63 @@ import labsim.distribuciones.*;
         frame.pack();
         frame.setVisible(true);
 
-        //Pausa la ejecución para ver el grafico
+        // Pausa la ejecución para ver el grafico
+        try {
+            Thread.sleep(5000); // 5 segundos
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testDistribucionEmpiricaContinua() {
+        List<Double> empirica = new ArrayList<>();
+        DistribucionEmpiricaContinua distribucion = new DistribucionEmpiricaContinua();
+        double[] datos = new double[10000];
+        int i;
+
+        // Definir la distribución empírica continua (probabilidad acumulada, valor)
+        empirica.add(0.0); // x=0
+        empirica.add(0.0); // y=0
+        empirica.add(0.2); // x=0.2
+        empirica.add(0.8); // y=0.80
+        empirica.add(0.4); // x=0.4
+        empirica.add(1.24); // y=1.24
+        empirica.add(0.6); // x=0.6
+        empirica.add(1.45); // y=1.45
+        empirica.add(0.8); // x=0.8
+        empirica.add(1.83); // y=1.83
+        empirica.add(1.0); // x= 1.0
+        empirica.add(2.76); // y=2.76
+
+        // Generar datos aleatorios
+        for (i = 0; i < 10000; i++) {
+            datos[i] = distribucion.getDistribucionEmpiricaContinua(empirica);
+        }
+
+        // Crear un conjunto de datos para el histograma
+        HistogramDataset dataset = new HistogramDataset();
+        dataset.addSeries("Distribución Empírica Continua", datos, 50);
+
+        // Crear el gráfico de histograma
+        JFreeChart chart = ChartFactory.createHistogram(
+                "Histograma de Distribución Empírica Continua",
+                "Valor",
+                "Frecuencia",
+                dataset);
+
+        // Crear un panel para mostrar el gráfico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(800, 600));
+
+        // Mostrar el gráfico en una ventana
+        JFrame frame = new JFrame("Gráfico de Distribución Empírica Continua");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(chartPanel);
+        frame.pack();
+        frame.setVisible(true);
+
+        // Pausa la ejecución para ver el gráfico
         try {
             Thread.sleep(5000); // 5 segundos
         } catch (InterruptedException e) {
@@ -358,4 +400,3 @@ import labsim.distribuciones.*;
         }
     }
 }
-

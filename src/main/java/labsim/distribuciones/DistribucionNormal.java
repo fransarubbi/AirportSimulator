@@ -11,12 +11,21 @@ public class DistribucionNormal {
     private double desviacionEstandar;
     private Random random;
 
+    /**
+     * Constructor de la Distribucion Normal.
+     * @param media
+     * @param desviacionEstandar
+     */
     public DistribucionNormal(double media, double desviacionEstandar){
         this.media = media;
         this.desviacionEstandar = desviacionEstandar;
         this.random = new Random();
     }
 
+    /**
+     * Funcion que retorna un random que cumple con una distribucion normal. 
+     * @return random
+     */
     public double getDistribucionNormal(){
         
         int n = 12, i;  //Número n de variables aleatorias a convolucionar
