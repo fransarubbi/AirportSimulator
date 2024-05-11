@@ -10,6 +10,6 @@ import labsim.recursos.Servidor;
  */
 public interface EleccionServidor {
 
-    Servidor seleccionServidorAvanzado(List<Servidor> servidores, Entidad entidad);
+    Servidor seleccionServidorAvanzado(List<Servidor> servidores, Entidad entidad, double clock);
     Servidor seleccionServidorEstandar(List<Servidor> servidores, Entidad entidad);
 }

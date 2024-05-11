@@ -1,5 +1,6 @@
 package labsim.recursos;
 
+import java.util.ArrayList;
 import java.util.List;
 import labsim.entidades.Entidad;
 
@@ -23,6 +24,8 @@ public abstract class Servidor{
 
     private int cantidadOcio = 0;
     private boolean disponible;
+    private double tiempoMantenimiento = 0;
+
 
     /**
      * Constructor de un Servidor.
@@ -68,6 +71,10 @@ public abstract class Servidor{
      */
     public void setDurabilidad(double desgaste) {
         this.durabilidad = this.durabilidad - desgaste;
+    }
+
+    public void resetDurabilidad(){
+        this.durabilidad = 3000;
     }
 
     /**
@@ -288,5 +295,30 @@ public abstract class Servidor{
      */
     public boolean isDisponible() {
         return disponible;
+    }
+
+    public double getTiempoMantenimiento() {
+        return tiempoMantenimiento;
+    }
+
+    public void setTiempoMantenimiento(double tiempoMantenimiento) {
+        this.tiempoMantenimiento = tiempoMantenimiento + 7200;    /*7200 son 5 dias */
+    }
+
+    public ArrayList<Servidor> getServidoresDisponibles(ArrayList<Servidor> servidores, double clock){
+        
+        ArrayList<Servidor> servers = new ArrayList<>();
+
+        for(Servidor servidor : servidores){
+            if(servidor.isDisponible() == false){
+                if(servidor.getTiempoMantenimiento() >= clock){
+                    servers.add(servidor);
+                }
+            }
+            else{
+                servers.add(servidor);
+            }
+        }
+        return servers;
     }
 }

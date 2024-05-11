@@ -466,26 +466,26 @@ public class Estadisticas {
                            + "\n|----------------------------------------------------------------|"  
                            + "\n|              Tiempo total ocio servidor 1                      | " + servidoresDesgaste.get(0).getTiempoTotalOcio()
                            + "\n|              Tiempo total ocio servidor 2                      | " + servidoresDesgaste.get(1).getTiempoTotalOcio()
-                           + "\n|              Tiempo total ocio servidor 3                      | " + servidoresDesgaste.get(2).getTiempoTotalOcio()
-                           + "\n|              Tiempo total ocio servidor 4                      | " + servidoresDesgaste.get(3).getTiempoTotalOcio()
-                           + "\n|              Tiempo total ocio servidor 5                      | " + servidoresDesgaste.get(4).getTiempoTotalOcio()
+                           //+ "\n|              Tiempo total ocio servidor 3                      | " + servidoresDesgaste.get(2).getTiempoTotalOcio()
+                           //+ "\n|              Tiempo total ocio servidor 4                      | " + servidoresDesgaste.get(3).getTiempoTotalOcio()
+                           //+ "\n|              Tiempo total ocio servidor 5                      | " + servidoresDesgaste.get(4).getTiempoTotalOcio()
                            + "\n|    Porcentaje de ocio respecto a la simulacion                 | " + porcentajeOcio + " %" 
                            + "\n|----------------------------------------------------------------|"
                            + "\n|               ESTADISTICAS TIEMPO DE USO SERVIDORES            |"   
                            + "\n|----------------------------------------------------------------|"  
                            + "\n|              Tiempo total ocupado servidor 1                   | " + (tiempoFinal - servidoresDesgaste.get(0).getTiempoTotalOcio())
                            + "\n|              Tiempo total ocupado servidor 2                   | " + (tiempoFinal - servidoresDesgaste.get(1).getTiempoTotalOcio())
-                           + "\n|              Tiempo total ocupado servidor 3                   | " + (tiempoFinal - servidoresDesgaste.get(2).getTiempoTotalOcio())
-                           + "\n|              Tiempo total ocupado servidor 4                   | " + (tiempoFinal - servidoresDesgaste.get(3).getTiempoTotalOcio())
-                           + "\n|              Tiempo total ocupado servidor 5                   | " + (tiempoFinal - servidoresDesgaste.get(4).getTiempoTotalOcio())
+                           //+ "\n|              Tiempo total ocupado servidor 3                   | " + (tiempoFinal - servidoresDesgaste.get(2).getTiempoTotalOcio())
+                           //+ "\n|              Tiempo total ocupado servidor 4                   | " + (tiempoFinal - servidoresDesgaste.get(3).getTiempoTotalOcio())
+                           //+ "\n|              Tiempo total ocupado servidor 5                   | " + (tiempoFinal - servidoresDesgaste.get(4).getTiempoTotalOcio())
                            + "\n|----------------------------------------------------------------|"
                            + "\n|             ESTADISTICAS DESGASTE SERVIDORES                   |"   
                            + "\n|----------------------------------------------------------------|"  
                            + "\n|              Desgaste servidor 1:                              | " + servidoresDesgaste.get(0).getDurabilidad()
                            + "\n|              Desgaste servidor 2:                              | " + servidoresDesgaste.get(1).getDurabilidad()
-                           + "\n|              Desgaste servidor 3:                              | " + servidoresDesgaste.get(2).getDurabilidad()
-                           + "\n|              Desgaste servidor 4:                              | " + servidoresDesgaste.get(3).getDurabilidad()
-                           + "\n|              Desgaste servidor 5:                              | " + servidoresDesgaste.get(4).getDurabilidad()
+                           //+ "\n|              Desgaste servidor 3:                              | " + servidoresDesgaste.get(2).getDurabilidad()
+                           //+ "\n|              Desgaste servidor 4:                              | " + servidoresDesgaste.get(3).getDurabilidad()
+                           //+ "\n|              Desgaste servidor 5:                              | " + servidoresDesgaste.get(4).getDurabilidad()
                            + "\n|----------------------------------------------------------------|"
                            + "\n|                ESTADISTICAS COLA ESPERA                        |"   
                            + "\n|----------------------------------------------------------------|" 

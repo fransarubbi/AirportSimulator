@@ -18,23 +18,14 @@ public class MultiplesServidores implements EleccionServidor{
      * considerando la disponibilidad de servidores, su ocupación, la longitud de sus colas y su condición general.
      */
     @Override
-    public Servidor seleccionServidorAvanzado(List<Servidor> servidores, Entidad entidad){
+    public Servidor seleccionServidorAvanzado(List<Servidor> servidores, Entidad entidad, double clock){
 
-        /*Primero buscamos servidores disponibles */
-        List<Servidor> disponible = disponible(servidores);
-
-        /*Luego buscamos el servidor que esta desocupado*/
-        if(disponible != null){
-            Servidor libre = desocupado(disponible);
-            if(libre != null){
-                return libre;
-            }
-            else{    /*No tengo servidores libres, elijo el de cola mas corta */
-                return seleccionarColaMasCorta(disponible);
-            }
+        Servidor libre = desocupado(servidores);
+        if(libre != null){
+            return libre;
         }
-        else{  /*No hay servidores disponibles debido al desgaste. Elegimos el que mejor condicion tenga */
-            return noHayDisponible(servidores);
+        else{    /*No tengo servidores libres, elijo el de cola mas corta */
+            return seleccionarColaMasCorta(servidores);
         }
     }
 
@@ -96,47 +87,6 @@ public class MultiplesServidores implements EleccionServidor{
         }
     }
 
-    /**
-     * Funcion que retorna una lista de servidores que estan disponibles en la simulacion. En caso que haya disponible retorna null.
-     * @param servidores
-     * @return servidores
-     */
-    private List<Servidor> disponible(List<Servidor> servidores){
-        
-        List<Servidor> servidoresDisponibles = new ArrayList<>();
-
-        for(Servidor servidor : servidores){
-            if(servidor.isDisponible() == true){
-                servidoresDisponibles.add(servidor);
-            }
-        }
-
-        if(servidoresDisponibles.size() > 0){
-            return servidoresDisponibles;
-        }
-        else{
-            return null;
-        }
-    }
-
-    /**
-     * Funcion que busca y retorna el servidor con la mayor durabilidad o en su defecto el primero.
-     * @param servidores
-     * @return servidor
-     */
-    private Servidor noHayDisponible(List<Servidor> servidores){
-
-        Servidor eleccion = servidores.get(0);
-        double durabilidad = servidores.get(0).getDurabilidad();
-        int i;
-        for(i = 0; i < servidores.size(); i++){
-            if(durabilidad < servidores.get(i).getDurabilidad()){
-                eleccion = servidores.get(i);
-                durabilidad = servidores.get(i).getDurabilidad();
-            }
-        }
-        return eleccion;
-    }
     
     /*
      * /**

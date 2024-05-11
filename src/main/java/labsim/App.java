@@ -18,7 +18,7 @@ public class App {
     public static void main(String[] args) {
 
         Estadisticas estadisticas = new Estadisticas();
-        Motor motor = new Simulacion(TAMANIOSIMULACION, CreadorServidores.nServidoresUnicasColas(5), estadisticas, new CustomRandomizer(), new MultiplesServidores());
+        Motor motor = new Simulacion(TAMANIOSIMULACION, CreadorServidores.nServidoresUnicasColas(2), estadisticas, new CustomRandomizer(), new MultiplesServidores());
         motor.correr();
 
         System.out.println(estadisticas.toString(TAMANIOSIMULACION));
