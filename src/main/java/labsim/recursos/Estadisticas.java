@@ -411,6 +411,15 @@ public class Estadisticas {
     }
 
     /**
+     * Funcion que retorna el desgaste de un servidor pedido por parametro.
+     * @param i
+     * @return desgaste
+     */
+    public double getServidorDesgaste(int i){
+        return servidoresDesgaste.get(i).getDurabilidad();
+    }
+
+    /**
      * Funcion que genera el informe general de toda la simulacion.
      * @param tiempoFinal
      * @return reporte
@@ -434,64 +443,65 @@ public class Estadisticas {
             minCola = 0;
         }
 
-        String informacion = "\n|----------------------------------------------------------------|"
-                           + "\n|                         ESTADISTICAS                           |"
-                           + "\n|----------------------------------------------------------------|"
-                           + "\n|              Cantidad total de arribo                          | " + cantidadAvionesArribados
-                           + "\n|              Cantidad total de aterrizajes                     | " + cantidadAvionesAterrizados
-                           + "\n|----------------------------------------------------------------|"
-                           + "\n|                      ESTADISTICAS ESPERA                       |"   
-                           + "\n|----------------------------------------------------------------|"                   
-                           + "\n|              Tiempo total de espera                            | " + tiempoEspera
-                           + "\n|              Tiempo minimo de espera                           | " + tiempoMinEspera
-                           + "\n|              Tiempo medio de espera                            | " + tiempoMedEspera
-                           + "\n|              Tiempo medio de espera, en situacion de espera    | " + tiempoMedEsperaExtra
-                           + "\n|              Tiempo maximo de espera                           | " + tiempoMaxEspera
-                           + "\n|----------------------------------------------------------------|"
-                           + "\n|                      ESTADISTICAS TRANSITO                     |"   
-                           + "\n|----------------------------------------------------------------|"  
-                           + "\n|              Tiempo total de transito                          | " + tiempoTransito
-                           + "\n|              Tiempo minimo de transito                         | " + tiempoMinTransito
-                           + "\n|              Tiempo medio de transito                          | " + tiempoMedTransito
-                           + "\n|              Tiempo maximo de transito                         | " + tiempoMaxTransito
-                           + "\n|----------------------------------------------------------------|"
-                           + "\n|                      ESTADISTICAS OCIO                         |"   
-                           + "\n|----------------------------------------------------------------|"  
-                           + "\n|              Tiempo total de ocio                              | " + tiempoOcio
-                           + "\n|              Tiempo minimo de ocio                             | " + tiempoMinOcio
-                           + "\n|              Tiempo medio de ocio                              | " + tiempoMedOcio
-                           + "\n|              Tiempo maximo de ocio                             | " + tiempoMaxOcio
-                           + "\n|----------------------------------------------------------------|"
-                           + "\n|                 ESTADISTICAS OCIO SERVIDORES                   |"   
-                           + "\n|----------------------------------------------------------------|"  
-                           + "\n|              Tiempo total ocio servidor 1                      | " + servidoresDesgaste.get(0).getTiempoTotalOcio()
-                           + "\n|              Tiempo total ocio servidor 2                      | " + servidoresDesgaste.get(1).getTiempoTotalOcio()
-                           //+ "\n|              Tiempo total ocio servidor 3                      | " + servidoresDesgaste.get(2).getTiempoTotalOcio()
-                           //+ "\n|              Tiempo total ocio servidor 4                      | " + servidoresDesgaste.get(3).getTiempoTotalOcio()
-                           //+ "\n|              Tiempo total ocio servidor 5                      | " + servidoresDesgaste.get(4).getTiempoTotalOcio()
-                           + "\n|    Porcentaje de ocio respecto a la simulacion                 | " + porcentajeOcio + " %" 
-                           + "\n|----------------------------------------------------------------|"
-                           + "\n|               ESTADISTICAS TIEMPO DE USO SERVIDORES            |"   
-                           + "\n|----------------------------------------------------------------|"  
-                           + "\n|              Tiempo total ocupado servidor 1                   | " + (tiempoFinal - servidoresDesgaste.get(0).getTiempoTotalOcio())
-                           + "\n|              Tiempo total ocupado servidor 2                   | " + (tiempoFinal - servidoresDesgaste.get(1).getTiempoTotalOcio())
-                           //+ "\n|              Tiempo total ocupado servidor 3                   | " + (tiempoFinal - servidoresDesgaste.get(2).getTiempoTotalOcio())
-                           //+ "\n|              Tiempo total ocupado servidor 4                   | " + (tiempoFinal - servidoresDesgaste.get(3).getTiempoTotalOcio())
-                           //+ "\n|              Tiempo total ocupado servidor 5                   | " + (tiempoFinal - servidoresDesgaste.get(4).getTiempoTotalOcio())
-                           + "\n|----------------------------------------------------------------|"
-                           + "\n|             ESTADISTICAS DESGASTE SERVIDORES                   |"   
-                           + "\n|----------------------------------------------------------------|"  
-                           + "\n|              Desgaste servidor 1:                              | " + servidoresDesgaste.get(0).getDurabilidad()
-                           + "\n|              Desgaste servidor 2:                              | " + servidoresDesgaste.get(1).getDurabilidad()
-                           //+ "\n|              Desgaste servidor 3:                              | " + servidoresDesgaste.get(2).getDurabilidad()
-                           //+ "\n|              Desgaste servidor 4:                              | " + servidoresDesgaste.get(3).getDurabilidad()
-                           //+ "\n|              Desgaste servidor 5:                              | " + servidoresDesgaste.get(4).getDurabilidad()
-                           + "\n|----------------------------------------------------------------|"
-                           + "\n|                ESTADISTICAS COLA ESPERA                        |"   
-                           + "\n|----------------------------------------------------------------|" 
-                           + "\n|          Tamano maximo de la cola de espera                    | " + maxCola
-                           + "\n|          Tamano minimo de la cola de espera                    | " + minCola
-                           + "\n|----------------------------------------------------------------|";
-        return informacion;
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n|----------------------------------------------------------------|")
+        .append("\n|                         ESTADISTICAS                           |")
+        .append("\n|----------------------------------------------------------------|")
+        .append(String.format("\n| %-62s | %d", "Cantidad total de arribo", cantidadAvionesArribados))
+        .append(String.format("\n| %-62s | %d", "Cantidad total de aterrizajes", cantidadAvionesAterrizados))
+        .append("\n|----------------------------------------------------------------|")
+        .append("\n|                      ESTADISTICAS ESPERA                       |")
+        .append("\n|----------------------------------------------------------------|")
+        .append(String.format("\n| %-62s | %.2f", "Tiempo total de espera", tiempoEspera))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo mínimo de espera", tiempoMinEspera))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo medio de espera", tiempoMedEspera))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo medio de espera, en situación de espera", tiempoMedEsperaExtra))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo máximo de espera", tiempoMaxEspera))
+        .append("\n|----------------------------------------------------------------|")
+        .append("\n|                      ESTADISTICAS TRANSITO                     |")
+        .append("\n|----------------------------------------------------------------|")
+        .append(String.format("\n| %-62s | %.2f", "Tiempo total de tránsito", tiempoTransito))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo mínimo de tránsito", tiempoMinTransito))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo medio de tránsito", tiempoMedTransito))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo máximo de tránsito", tiempoMaxTransito))
+        .append("\n|----------------------------------------------------------------|")
+        .append("\n|                      ESTADISTICAS OCIO                         |")
+        .append("\n|----------------------------------------------------------------|")
+        .append(String.format("\n| %-62s | %.2f", "Tiempo total de ocio", tiempoOcio))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo mínimo de ocio", tiempoMinOcio))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo medio de ocio", tiempoMedOcio))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo máximo de ocio", tiempoMaxOcio))
+        .append("\n|----------------------------------------------------------------|")
+        .append("\n|                 ESTADISTICAS OCIO SERVIDORES                   |")
+        .append("\n|----------------------------------------------------------------|")
+        .append(String.format("\n| %-62s | %.2f", "Tiempo total ocio servidor 1", servidoresDesgaste.get(0).getTiempoTotalOcio()))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo total ocio servidor 2", servidoresDesgaste.get(1).getTiempoTotalOcio()))
+        //.append(String.format("\n| %-62s | %.2f", "Tiempo total ocio servidor 3", servidoresDesgaste.get(2).getTiempoTotalOcio()))
+        //.append(String.format("\n| %-62s | %.2f", "Tiempo total ocio servidor 4", servidoresDesgaste.get(3).getTiempoTotalOcio()))
+        //.append(String.format("\n| %-62s | %.2f", "Tiempo total ocio servidor 5", servidoresDesgaste.get(4).getTiempoTotalOcio()))
+        .append(String.format("\n| %-62s | %.2f %%", "Porcentaje de ocio respecto a la simulación", porcentajeOcio))
+        .append("\n|----------------------------------------------------------------|")
+        .append("\n|               ESTADISTICAS TIEMPO DE USO SERVIDORES            |")
+        .append("\n|----------------------------------------------------------------|")
+        .append(String.format("\n| %-62s | %.2f", "Tiempo total ocupado servidor 1", tiempoFinal - servidoresDesgaste.get(0).getTiempoTotalOcio()))
+        .append(String.format("\n| %-62s | %.2f", "Tiempo total ocupado servidor 2", tiempoFinal - servidoresDesgaste.get(1).getTiempoTotalOcio()))
+        //.append(String.format("\n| %-62s | %.2f", "Tiempo total ocupado servidor 3", tiempoFinal - servidoresDesgaste.get(2).getTiempoTotalOcio()))
+        //.append(String.format("\n| %-62s | %.2f", "Tiempo total ocupado servidor 4", tiempoFinal - servidoresDesgaste.get(3).getTiempoTotalOcio()))
+        //.append(String.format("\n| %-62s | %.2f", "Tiempo total ocupado servidor 5", tiempoFinal - servidoresDesgaste.get(4).getTiempoTotalOcio()))
+        .append("\n|----------------------------------------------------------------|")
+        .append("\n|             ESTADISTICAS DESGASTE SERVIDORES                   |")
+        .append("\n|----------------------------------------------------------------|")
+        .append(String.format("\n| %-62s | %.2f", "Desgaste servidor 1", servidoresDesgaste.get(0).getDurabilidad()))
+        .append(String.format("\n| %-62s | %.2f", "Desgaste servidor 2", servidoresDesgaste.get(1).getDurabilidad()))
+        //.append(String.format("\n| %-62s | %.2f", "Desgaste servidor 3", servidoresDesgaste.get(2).getDurabilidad()))
+        //.append(String.format("\n| %-62s | %.2f", "Desgaste servidor 4", servidoresDesgaste.get(3).getDurabilidad()))
+        //.append(String.format("\n| %-62s | %.2f", "Desgaste servidor 5", servidoresDesgaste.get(4).getDurabilidad()))
+        .append("\n|----------------------------------------------------------------|")
+        .append("\n|                ESTADISTICAS COLA ESPERA                        |")
+        .append("\n|----------------------------------------------------------------|")
+        .append(String.format("\n| %-62s | %d", "Tamaño máximo de la cola de espera", maxCola))
+        .append(String.format("\n| %-62s | %d", "Tamaño mínimo de la cola de espera", minCola))
+        .append("\n|----------------------------------------------------------------|");
+        return sb.toString();
     }
 }
